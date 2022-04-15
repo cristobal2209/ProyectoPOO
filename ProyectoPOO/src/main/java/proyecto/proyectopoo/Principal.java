@@ -55,10 +55,10 @@ public class Principal {
         
         //si la ListaUsuarios no está vacía
         if (!usuario.getIsListaUsuariosEmpty()) {
-                System.out.println("¿A que usuario deseas acceder?");
-                usuario.mostrarLista();
-                nombreUsuario = input.next();
-                        
+            System.out.println("¿A que usuario deseas acceder?");
+            usuario.mostrarLista();
+            nombreUsuario = input.next();
+            if (usuario.buscar(nombreUsuario) != null) {
                 do{
                     //se imprime texto de menu usuario
                     textoMenuUsuario();
@@ -69,8 +69,12 @@ public class Principal {
                     switch(opcionUsuario) {
                         //mostrar IMC
                         case 1:
-                            System.out.println("IMC :"+usuario.mostrarIMC(nombreUsuario));
-                            System.out.println();
+                            double imc = usuario.getIMC(nombreUsuario); 
+                            
+                            if (imc == 0)
+                                System.out.println("Aún no se ha consumido algún vegetal");
+                            else
+                                System.out.println("Tu IMC es: "+imc);
                             break;
                         
                         //añadir vegetal consumido
@@ -79,8 +83,10 @@ public class Principal {
                             datosFrutas.mostrarLista();
                             datosVerduras.mostrarLista();
                             nombreVegetal = input.next();
-                            usuario.agregarVegetalConsumido(nombreUsuario, nombreVegetal);
-                            System.out.println("Vegetal agregado");
+                            if (usuario.agregarVegetalConsumido(nombreUsuario, nombreVegetal))
+                                System.out.println("Vegetal agregado");
+                            else
+                                System.out.println("No se pudo agregar vegetal");
                             break;
                             
                         //mostrar vegetales consumidos
@@ -91,22 +97,33 @@ public class Principal {
                         //calcular calorias consumidas
                         case 4:
                             System.out.println("Total calorias consumidas:"+usuario.getCaloriasConsumidas(nombreUsuario, datosVerduras, datosFrutas)+" gramos");
-                            System.out.println();
                             break;
                         
                         //modificar datos de un usuario
                         case 5:
-                            usuario.modificar(nombreUsuario);
+                            if (!usuario.modificar(nombreUsuario))
+                                System.out.println("No se pudo modificar el usuario");
+                            break;
+                        
+                        //eliminar vegetal consumido
+                        case 6:
+                            nombreVegetal = input.next();
+                            if (usuario.eliminarVegetalConsumido(nombreVegetal, nombreUsuario)) {
+                                System.out.println("Vegetal consumido eliminado");
+                            }
+                            else
+                                System.out.println("No se pudo eliminar el vegetal consumido");
                             break;
                         
                         default:
                     }
                 }while(opcionUsuario!=0);
+            }
+            else
+                System.out.println("El usuario con ese nombre no existe");
         }
-        else {
+        else
             System.out.println("Aún no hay usuarios");
-            System.out.println();
-        }
     }
     
     public static void menuPrincipal(Usuario usuario) {
@@ -121,10 +138,19 @@ public class Principal {
             opcion = input.nextInt();
             
             switch (opcion) {
+                
                 //crear usuario
                 case 1:
-                    usuario.crear();
-                    break;
+                String nombre;
+                System.out.println("Ingresa tu nombre");
+                nombre = input.next();
+                if (usuario.crear(nombre)) {
+                    System.out.println("Usuario creado con éxito!");
+                }
+                else {
+                    System.out.println("El usuario ya se encuentra registrado");
+                }
+                break;
                     
                 //ver usuarios
                 case 2:
@@ -136,8 +162,21 @@ public class Principal {
                     menuUsuario(usuario);
                     break;
                 	
+                //eliminar un usuario
                 case 4:
-                    usuario.eliminar();
+                    String nombreEliminar;
+                    
+                    System.out.println("¿Que usuario quieres eliminar?");
+                    usuario.mostrarLista();
+                    nombreEliminar = input.next();
+                    if (!usuario.getIsListaUsuariosEmpty()) {
+                        if (usuario.eliminar(nombreEliminar))
+                            System.out.println("Usuario eliminado");
+                        else
+                            System.out.println("No se pudo eliminar el usuario");
+                    }
+                    else
+                        System.out.println("No hay usuarios que eliminar");
                     break;
                     
                 default: 
@@ -195,15 +234,11 @@ public class Principal {
     }
     
     public static void main(String[] args) throws FileNotFoundException {
-        
         leerDesdeArchivo();
         
         usuario = new Usuario();
         
         menuPrincipal(usuario);
-        
-        //verdura.mostrarDatos();
-        //fruta.mostrarDatos();
     }
     
 }

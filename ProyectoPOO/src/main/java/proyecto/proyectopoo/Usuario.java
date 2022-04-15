@@ -3,9 +3,6 @@ package proyecto.proyectopoo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
-
 public class Usuario {
     
     //atributos
@@ -81,6 +78,19 @@ public class Usuario {
         imc = masa/(Math.pow(altura, 2));
     }
     
+    public double getIMC(String nombre) {
+        Usuario usuario;
+        
+        usuario = buscar(nombre);
+        
+        if (usuario != null) {
+            usuario.calcularIMC();
+            return usuario.getImc();
+        }
+        else 
+            return 0;
+    }
+    
     public boolean getIsListaUsuariosEmpty() {
         if (ListaUsuarios.isEmpty()) 
             return true;
@@ -99,124 +109,142 @@ public class Usuario {
     	return null;
     }
     
-    public void crear() {
+    public boolean crear(String nombre) {
         Scanner input = new Scanner(System.in);
-        String nombre, sexo;
-        double masa, altura;
+        String sexo1;
+        double masa1, altura1;
         
-        System.out.println("Ingresa tu nombre");
-        nombre = input.next();
-        System.out.println("Ingresa tu peso en kilogramos");
-        masa = input.nextDouble();
-        System.out.println("Ingresa tu altura en metros");
-        altura = input.nextDouble();
-        System.out.println("¿Tu sexo es femenino (F) o masculino (M)?");
-        sexo = input.next();
+        /*busca a un usuario con el nombre ingresado, si no encuentra usuario con ese nombre, lo crea*/
+        if (buscar(nombre) == null) {
+            System.out.println("Ingresa tu peso en kilogramos");
+            masa1 = input.nextDouble();
+            System.out.println("Ingresa tu altura en metros");
+            altura1 = input.nextDouble();
+            System.out.println("¿Tu sexo es femenino (F) o masculino (M)?");
+            sexo1 = input.next();
         
-        //se añade a ListaUsuarios un nuevo objeto Usuario
-        ListaUsuarios.add(new Usuario(nombre, masa, altura, sexo));
-        
-        System.out.println("Usuario creado con éxito.");
-        System.out.println();
-    }
-        
-    public void modificar(String nombre) {
-    	Usuario usuarioModificar;
-    	Scanner input = new Scanner(System.in);
-
-    	int opcion;
-    	
-    	usuarioModificar = buscar(nombre);
-    	
-        if (usuarioModificar != null) {
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("1...Nombre");
-            System.out.println("2...Peso");
-            System.out.println("3...Altura");
-            opcion = input.nextInt();
-    	
-            switch (opcion) {
-                case 1:
-                    System.out.println("Ingresa un nuevo nombre");
-                    usuarioModificar.setNombre(input.next());
-                    break;
-    			
-                case 2:
-                    System.out.println("Ingresa el nuevo peso");
-                    usuarioModificar.setMasa(input.nextDouble());
-                    break;
-    			
-    		case 3:
-                    System.out.println("Ingresa la nueva altura");
-                    usuarioModificar.setAltura(input.nextDouble());
-                    break;
-    			
-            	default:
-            }
+            //se añade a ListaUsuarios un nuevo objeto Usuario
+            ListaUsuarios.add(new Usuario(nombre, masa1, altura1, sexo1));
+            return true;
         }
         else 
-            System.out.println("Usuario no encontrado");
+            return false;
+    }
+        
+    public boolean modificar(String nombre) {
+    	Scanner input = new Scanner(System.in);
+        Usuario usuarioModificar = buscar(nombre);
+        int opcion;
+        
+        if (usuarioModificar != null) {
+            System.out.println("¿Que quieres modificar?");
+            do {
+                System.out.println("1...Nombre");
+                System.out.println("2...Peso");
+                System.out.println("3...Altura");
+                System.out.println("0..Atras");
+                opcion = input.nextInt();
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Ingresa un nuevo nombre");
+                        usuarioModificar.setNombre(input.next());
+                        System.out.println("Nombre cambiado!");
+                        break;
+    			
+                    case 2:
+                        System.out.println("Ingresa el nuevo peso");
+                        usuarioModificar.setMasa(input.nextDouble());
+                        System.out.println("Peso cambiado!");
+                        break;
+    			
+                    case 3:
+                        System.out.println("Ingresa la nueva altura");
+                        usuarioModificar.setAltura(input.nextDouble());
+                        System.out.println("Altura cambiada!");
+                        break;
+    			
+                    default:
+                }
+                if (opcion != 0){
+                    System.out.println("¿Quieres modificar algo mas?");
+                    System.out.println("1..SI");
+                    System.out.println("2..NO");
+                    if (input.nextInt() == 2)
+                        opcion = 0;
+                }
+            }while(opcion!=0);
+            return true;
+        }
+        else 
+            return false;
     }
     
+    public boolean eliminar(String nombreEliminar) {
+        int i;
+        
+        if (buscar(nombreEliminar) != null) {
+            for (i=0; i < ListaUsuarios.size(); i++) {
+                if (nombreEliminar.equalsIgnoreCase(ListaUsuarios.get(i).getNombre())) {
+                    ListaUsuarios.remove(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean eliminarVegetalConsumido(String nombreVegetal, String nombreUsuario) {
+        Usuario usuario = buscar(nombreUsuario);
+        int i;
+        
+        for (i = 0; i < usuario.ListaVegetalesConsumidos.size(); i++) {
+            if (nombreVegetal.equalsIgnoreCase(usuario.ListaVegetalesConsumidos.get(i).getNombre())) {
+                usuario.ListaVegetalesConsumidos.remove(i);
+                return true;
+            }  
+        }
+        return false;
+    }
+    
+    public boolean agregarVegetalConsumido(String nombreUsuario, String nombreVegetal) {
+        Usuario usuario = buscar(nombreUsuario);
+        
+        if (usuario != null) {
+            usuario.ListaVegetalesConsumidos.add(new Vegetal(nombreVegetal));
+            return true;
+        }
+        else 
+            return false;
+    }
+    
+    public double getCaloriasConsumidas(String nombreUsuario, Verdura datosVerduras, Fruta datosFrutas) {
+        Usuario usuario = buscar(nombreUsuario);
+        double sumaCalorias=0;
+        int j;
+        
+        if (usuario != null) {
+            for (j = 0; j < usuario.ListaVegetalesConsumidos.size(); j++) {
+                sumaCalorias += datosVerduras.getCaloriasVerdura(usuario.ListaVegetalesConsumidos.get(j).getNombre());
+                sumaCalorias += datosFrutas.getCaloriasFruta(usuario.ListaVegetalesConsumidos.get(j).getNombre());
+            }
+        }
+        return sumaCalorias;
+    }
+
     public void mostrarLista(){
         //si ListaUsuarios no está vacía
         if (!ListaUsuarios.isEmpty()) {
            for (int i=0; i < ListaUsuarios.size(); i++) {
                System.out.println("- "+ListaUsuarios.get(i).nombre);
            }
-           System.out.println();
         } 
         else {
            System.out.println("Aún no se ha ingresado un usuario");
-           System.out.println();
-        }
-    }
-    
-    public void eliminar() {
-        Scanner input = new Scanner(System.in);
-        String nombreEliminar;
-        int i;
-       
-        if (!ListaUsuarios.isEmpty()){
-            mostrarLista();
-            System.out.println("¿Que usuario quieres eliminar?");
-            nombreEliminar = input.next();
-            
-            if (buscar(nombreEliminar) != null) {
-                for (i=0; i < ListaUsuarios.size(); i++) {
-                    if (nombreEliminar.equalsIgnoreCase(ListaUsuarios.get(i).getNombre())) {
-                        ListaUsuarios.remove(i);
-                        System.out.println("Usuario eliminado");
-                    }
-                }
-            }
-            else {
-                System.out.println("Usuario ya eliminado");
-            }
-        }
-        else {
-            System.out.println("No hay usuarios");
-        }
-    }
-    
-    public void mostrarRegistrados() {
-        //si ListaUsuarios no está vacía
-        if (!ListaUsuarios.isEmpty()) {
-            for (int i=0; i < ListaUsuarios.size(); i++) {
-                System.out.println("Usuario N"+(i+1));
-                System.out.println("Nombre: "+ListaUsuarios.get(i).nombre);
-                System.out.println();
-            }
-        } else {
-            System.out.println("No hay usuarios que mostrar");
-            System.out.println();
         }
     }
         
     public void mostrarVegetalesConsumidos(String nombre) {
-        Usuario usuario;
-        
-        usuario = buscar(nombre);
+        Usuario usuario = buscar(nombre);
         
         if (usuario != null) {
             if (usuario.ListaVegetalesConsumidos.isEmpty())
@@ -227,49 +255,20 @@ public class Usuario {
                 else
                     System.out.print(", "+usuario.ListaVegetalesConsumidos.get(i).getNombre());
             }
-            System.out.println();
         }
         else 
             System.out.println("Error al mostrar vegetales consumidos");
     }
     
-    public double mostrarIMC(String nombre) {
-        Usuario usuario;
-        
-        usuario = buscar(nombre);
-        
-        if (usuario != null) {
-            usuario.calcularIMC();
-            return usuario.getImc();
-        }
-        else 
-            return 0;
-    }
-    
-    public void agregarVegetalConsumido(String nombreUsuario, String nombreVegetal) {
-        Usuario usuario;
-        
-        usuario = buscar(nombreUsuario);
-        
-        if (usuario != null) 
-            usuario.ListaVegetalesConsumidos.add(new Vegetal(nombreVegetal));
-        else
-            System.out.println("El usuario no existe");
-    }
-    
-    public double getCaloriasConsumidas(String nombreUsuario, Verdura datosVerduras, Fruta datosFrutas) {
-        Usuario usuario;
-        double sumaCalorias=0;
-        int j;
-        
-        usuario = buscar(nombreUsuario);
-        if (usuario != null) {
-            for (j = 0; j < usuario.ListaVegetalesConsumidos.size(); j++) {
-                sumaCalorias += datosVerduras.getCaloriasVerdura(usuario.ListaVegetalesConsumidos.get(j).getNombre());
-                sumaCalorias += datosFrutas.getCaloriasFruta(usuario.ListaVegetalesConsumidos.get(j).getNombre());
+    public void mostrarRegistrados() {
+        //si ListaUsuarios no está vacía
+        if (!ListaUsuarios.isEmpty()) {
+            for (int i=0; i < ListaUsuarios.size(); i++) {
+                System.out.println("Usuario N"+(i+1));
+                System.out.println("Nombre: "+ListaUsuarios.get(i).nombre);
             }
+        } else {
+            System.out.println("No hay usuarios que mostrar");
         }
-        
-        return sumaCalorias;
     }
 }
