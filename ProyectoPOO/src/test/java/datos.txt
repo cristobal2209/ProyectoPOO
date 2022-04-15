@@ -1,0 +1,6 @@
+Zapallo calabaza false true 10,3 1,3 0,6 26,1 190,0
+Zanahoria raiz true false 2,5 0,6 0,1 5,8 61,0
+Cebolla hortaliza true false 3,1 3,2 5,3 1,2 60,67
+Manzana dulce true 9,5 0,5 0,3 25,1 182,0
+Pina Semi-acido false 4,5 0,5 0,1 11,8 90,0
+Platano dulce false 3,1 3,2 5,3 1,2 78,1
