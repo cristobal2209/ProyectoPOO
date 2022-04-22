@@ -7,16 +7,10 @@ public class Fruta {
     
     //atributos
     
-    private String nombre;
-    private String tipo;
+    private String nombre, tipo;
     private boolean tieneSemilla;
-    private double calorias;
-    private double proteinas;
-    private double grasas;
-    private double carbohidratos;
-    private double porcion;
-    private ArrayList<Fruta> ListaFrutas = new ArrayList<Fruta>();
-    
+    private double calorias, proteinas, grasas, carbohidratos, porcion;
+
     //constructores
 
     public Fruta() {
@@ -43,10 +37,6 @@ public class Fruta {
         return tipo;
     }
 
-    public boolean getTieneSemilla() {
-        return tieneSemilla;
-    }
-
     public double getCalorias() {
         return calorias;
     }
@@ -65,6 +55,10 @@ public class Fruta {
     
     public double getPorcion() {
         return porcion;
+    }
+
+    public boolean isTieneSemilla() {
+        return tieneSemilla;
     }
 
     //mutadores
@@ -96,52 +90,8 @@ public class Fruta {
     public void setCarbohidratos(double carbohidratos) {
         this.carbohidratos = carbohidratos;
     }
-
+    
     public void setPorcion(double porcion) {
         this.porcion = porcion;
-    }
-
-    //metodos
-    
-    public void leerDesdeArchivo(String nombre, String tipo, boolean tieneSemilla, double calorias, double proteinas, double grasas, double carbohidratos, double porcion) {
-        ListaFrutas.add(new Fruta(nombre, tipo, tieneSemilla, calorias, proteinas, grasas, carbohidratos, porcion));
-    }
-    
-    public void mostrarDatos() {
-        for (int i = 0; i < ListaFrutas.size(); i++) {
-            System.out.println("FRUTA "+(i+1));
-            System.out.println("Nombre "+ListaFrutas.get(i).nombre);
-            System.out.println("Tipo "+ListaFrutas.get(i).tipo);
-            System.out.print("¿Tiene semilla? ");
-            if (ListaFrutas.get(i).tieneSemilla) System.out.println("SI"); else System.out.println("NO");
-            System.out.println("Una porción de "+ListaFrutas.get(i).porcion+" gramos tiene:");
-            System.out.println(ListaFrutas.get(i).calorias+" calorias");
-            System.out.println(ListaFrutas.get(i).grasas+" grasas");
-            System.out.println(ListaFrutas.get(i).proteinas+" proteinas");
-            System.out.println(ListaFrutas.get(i).carbohidratos+" carbohidratos");
-            System.out.println();
-        }
-    }
-    
-    public void mostrarLista() {
-        for (int i = 0; i < ListaFrutas.size(); i++) {
-            System.out.println("- "+ListaFrutas.get(i).nombre);
-        }
-    }
-    
-    public double getCaloriasFruta(String nombreVerdura) {
-        int i;
-        double caloriasFruta=0;
-        
-        /*Recorre la lista y si encuentra el nombre deseado, guarda el valors de las calorias en la variable caloriasFruta
-        para luego retornar ese valor*/
-        for (i=0; i < ListaFrutas.size(); i++) {
-            if (nombreVerdura.equalsIgnoreCase(ListaFrutas.get(i).nombre)) {
-                caloriasFruta = ListaFrutas.get(i).calorias;
-                break;
-            }
-        }
-        
-        return caloriasFruta;
     }
 }
