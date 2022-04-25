@@ -3,8 +3,7 @@ package proyecto.proyectopoo;
 
 
 public class Vegetal {
-    private String nombre;
-    private String tipo;
+    private String nombre, tipo;
     
     //constructores
     
@@ -12,8 +11,9 @@ public class Vegetal {
         
     }
     
-    public Vegetal(String nombre){
+    public Vegetal(String nombre, String tipo){
         this.nombre = nombre;
+        this.tipo = tipo;
     }
 
     //getters

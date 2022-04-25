@@ -4,6 +4,7 @@
  */
 package proyecto.proyectopoo;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,12 +14,13 @@ import java.util.Scanner;
  */
 public class Registro {
     private ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
-    Scanner input = new Scanner(System.in);
+
+    public ArrayList<Usuario> getListaUsuarios() {
+        return ListaUsuarios;
+    } 
     
     public boolean getIsListaUsuariosEmpty() {
-        if (ListaUsuarios.isEmpty()) 
-            return true;
-        return false;
+        return ListaUsuarios.isEmpty();
     }
      
     public Usuario getUsuario(String nombre) {
@@ -30,11 +32,10 @@ public class Registro {
     	return null;
     }
     
-    public boolean buscarUsuario1(String nombre) {
+    public boolean buscarUsuario(String nombre) {
     	for (int i=0; i<ListaUsuarios.size(); i++) {
-            if (nombre.equalsIgnoreCase(ListaUsuarios.get(i).getNombre())) {
+            if (nombre.equalsIgnoreCase(ListaUsuarios.get(i).getNombre()))
                 return true;
-            }
     	}
     	return false;
     }
@@ -42,8 +43,9 @@ public class Registro {
     public boolean crearUsuario(String nombre) {
         String sexo;
         double masa, altura;
+        Scanner input = new Scanner(System.in);
         
-        if (getUsuario(nombre) == null) {
+        if (!buscarUsuario(nombre)) {
             System.out.println("Ingresa tu peso en kilogramos");
             masa = input.nextDouble();
             System.out.println("Ingresa tu altura en metros");
@@ -59,6 +61,7 @@ public class Registro {
     }
     
     public boolean modificarUsuario(Usuario usuarioModificar, int opcion) { 
+        Scanner input = new Scanner(System.in);
         switch (opcion) {
             case 1:
                 System.out.println("Ingresa nuevo nombre");
@@ -102,6 +105,25 @@ public class Registro {
         for (int i=0; i < ListaUsuarios.size(); i++) {
             System.out.println("Usuario N"+(i+1));
             System.out.println("Nombre: "+ListaUsuarios.get(i).getNombre());
+        }
+    }
+        
+    public boolean crearArchivoUsuarios() {
+        try {
+            PrintWriter writer = new PrintWriter("src/test/java/usuarios.txt", "UTF-8");
+            for (int i = 0; i < ListaUsuarios.size(); i++) {
+                writer.println("Usuario "+(i+1)+(": ")+ListaUsuarios.get(i).getNombre() );
+                writer.print("Vegetales consumidos de "+ListaUsuarios.get(i).getNombre()+": ");
+                for (int j = 0; j < ListaUsuarios.get(i).getListaVegetalesConsumidos().size(); j++) {
+                    writer.print(ListaUsuarios.get(i).getListaVegetalesConsumidos().get(j).getNombre()+" ");
+                }
+                writer.println();
+            }
+            writer.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

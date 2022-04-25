@@ -1,20 +1,11 @@
 
 package proyecto.proyectopoo;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * 
  * @author Pablo Araya, René Araya, Cristóbal Cáceres
- * 
- * Consideración: En la ruta src/test/java/(archivos) se dejan 2 archivos .txt que contienen 
- * los vegetales a guardar, la diferencia es que en uno los datos están separados por "," y
- * en el otro con ".". Dependiendo de la versión de netbeans, puede o no haber un error al
- * intentar interpretar un double con "," o con ".". En el que caso que tenga un error de 
- * lectura del archivo .txt se le pide cambiar la ruta del archivo en la linea 159 de esta clase a
- * "src/test/java/datos2.txt" o "src/test/java/datos.txt".
  */
 public class Principal {
     
@@ -27,6 +18,7 @@ public class Principal {
         System.out.println("2...Mostrar los usuarios");
         System.out.println("3...Acceder a un usuario");
         System.out.println("4...Eliminar un usuario");
+        System.out.println("5...Generar reporte de usuarios registrados");
         System.out.println("0...Salir");
         System.out.println();
     }
@@ -38,13 +30,14 @@ public class Principal {
         System.out.println("3...Mostrar vegetales consumidos");
         System.out.println("4...Calcular calorias consumidas");
         System.out.println("5...Modificar datos");
+        System.out.println("6...Eliminar vegetal Consumido");
         System.out.println("0...Volver atrás");
         System.out.println();
     }
     
     public static void menuUsuario(Registro UsuariosRegistrados, Datos DatosVegetales) {
         Scanner input = new Scanner(System.in);
-        String nombreVegetal;
+        String nombreVegetal, tipoVegetal;
         Usuario usuario;
         int opcionUsuario, opcionModificar;
         
@@ -77,8 +70,13 @@ public class Principal {
                             DatosVegetales.mostrarListaFrutas();
                             DatosVegetales.mostrarListaVerduras();
                             nombreVegetal = input.next();
-                            usuario.agregarVegetalConsumido(nombreVegetal);
-                            System.out.println("Vegetal agregado");
+                            if (DatosVegetales.vegetalExiste(nombreVegetal)) {
+                                tipoVegetal = DatosVegetales.getTipoVegetal(nombreVegetal);
+                                usuario.agregarVegetalConsumido(nombreVegetal, tipoVegetal);
+                                System.out.println("Vegetal agregado");
+                            }
+                            else
+                                System.out.println("Ingrese un vegetal valido");
                             break;
                             
                         //mostrar vegetales consumidos
@@ -115,6 +113,7 @@ public class Principal {
                             break;
                         
                         default:
+                            System.out.println("Ingrese opcion valida");
                     }
                 }while(opcionUsuario!=0);
             }
@@ -173,60 +172,25 @@ public class Principal {
                     else
                         System.out.println("No hay usuarios que eliminar");
                     break;
+                
+                case 5:
+                    if (UsuariosRegistrados.crearArchivoUsuarios())
+                        System.out.println("Archivo generado con exito");
+                    else
+                        System.out.println("Error al generar archivo");
+                    break;
                     
                 default: 
+                    System.out.println("Ingrese opcion valida");
             }
         }while(opcion!=0);
-    }
-    
-    public static void leerDesdeArchivo(Datos DatosVegetales) {
-        String nombre, tipo;
-        boolean esCultivoPequeno, tieneSemilla;
-        double calorias, proteinas, grasas, carbohidratos, porcion;
-
-        //definiendo archivo
-        File archivo = new File("src/test/java/datos2.txt");
-            
-        try (Scanner reader = new Scanner(archivo)) {
-            //leyendo datos de verduras
-            for (int i=0; i < MAX_VERDURAS; i++) {
-                nombre = reader.next();
-                tipo = reader.next();
-                esCultivoPequeno = reader.nextBoolean();
-                tieneSemilla = reader.nextBoolean();
-                calorias = reader.nextDouble();
-                proteinas = reader.nextDouble();
-                grasas = reader.nextDouble();
-                carbohidratos = reader.nextDouble();
-                porcion = reader.nextDouble();
-                
-                DatosVegetales.leerDesdeArchivoVerdura(nombre, tipo, esCultivoPequeno, tieneSemilla, calorias, proteinas, grasas, carbohidratos, porcion);
-            }
-            
-            //leyendo datos de frutas
-            for (int i=0; i < MAX_FRUTAS; i++) {
-                nombre = reader.next();
-                tipo = reader.next();
-                tieneSemilla = reader.nextBoolean();
-                calorias = reader.nextDouble();
-                proteinas = reader.nextDouble();
-                grasas = reader.nextDouble();
-                carbohidratos = reader.nextDouble();
-                porcion = reader.nextDouble();
-                
-                DatosVegetales.leerDesdeArchivoFruta(nombre, tipo, tieneSemilla, calorias, proteinas, grasas, carbohidratos, porcion);
-            }
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("Ha ocurrido un error de lectura del archivo");
-        }
     }
     
     public static void main(String[] args) throws FileNotFoundException {
         Registro UsuariosRegistrados = new Registro();
         Datos DatosVegetales = new Datos();
         
-        leerDesdeArchivo(DatosVegetales);
+        DatosVegetales.leerDesdeArchivo();
         menuPrincipal(UsuariosRegistrados, DatosVegetales);
     }
     

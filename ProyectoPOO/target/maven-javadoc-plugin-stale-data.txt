@@ -1,0 +1,51 @@
+@options
+@packages
+@argfile
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ProyectoPOO 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'ProyectoPOO 1.0-SNAPSHOT API'
+proyecto.proyectopoo
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Datos.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Fruta.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Principal.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Registro.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Usuario.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Vegetal.java'
+'C:/Users/crist/Documents/GitHub/ProyectoPOO/ProyectoPOO/src/main/java/proyecto/proyectopoo/Verdura.java'
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\src\main\java\desktop.ini = 1650051616744
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\src\main\java = 1650051616744
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\allclasses-index.html = 1650923083143
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\allpackages-index.html = 1650923083146
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\element-list = 1650923083079
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\help-doc.html = 1650923083177
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\index-all.html = 1650923083171
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\index.html = 1650923083173
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\jquery-ui.overrides.css = 1650923083210
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\member-search-index.js = 1650923083152
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\module-search-index.js = 1650923083148
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\overview-tree.html = 1650923083123
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\package-search-index.js = 1650923083149
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\script.js = 1650923083179
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\search.js = 1650923083182
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\stylesheet.css = 1650923083178
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\tag-search-index.js = 1650923083154
+C:\Users\crist\Documents\GitHub\ProyectoPOO\ProyectoPOO\target\site\apidocs\type-search-index.js = 1650923083151
