@@ -1,8 +1,13 @@
 package proyecto.proyectopoo;
 
-
-import java.util.ArrayList;
-
+/**
+ * Esta clase define los atributos y constructores que tiene un objeto Fruta
+ * 
+ * @author 
+ * @author
+ * @author
+ * @version
+ */
 public class Fruta {
     
     //atributos
@@ -12,11 +17,20 @@ public class Fruta {
     private double calorias, proteinas, grasas, carbohidratos, porcion;
 
     //constructores
-
-    public Fruta() {
-    }
-
+    /**
+     * Contructor de la clase Fruta con 8 parámetros.
+     * 
+     * @param nombre nombre de una fruta
+     * @param tipo tipo al que pertenece una fruta
+     * @param tieneSemilla indica si la fruta tiene semilla (true-si, false-no)
+     * @param calorias calorias que tiene una porción, en gramos
+     * @param proteinas proteinas que tiene una porción, en gramos
+     * @param grasas grasas que tiene una porción, en gramos
+     * @param carbohidratos carbohidratos que posee una porción, en gramos
+     * @param porcion cuantos gramos equivale una porción
+     */
     public Fruta(String nombre, String tipo, boolean tieneSemilla, double calorias, double proteinas, double grasas, double carbohidratos, double porcion) {
+        
         this.nombre = nombre;
         this.tipo = tipo;
         this.tieneSemilla = tieneSemilla;
@@ -27,7 +41,7 @@ public class Fruta {
         this.porcion = porcion;
     }
 
-    //accesores
+    //getters
     
     public String getNombre() {
         return nombre;
@@ -61,7 +75,7 @@ public class Fruta {
         return tieneSemilla;
     }
 
-    //mutadores
+    //setters
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

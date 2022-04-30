@@ -5,13 +5,25 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * @author Pablo Araya, René Araya, Cristóbal Cáceres
+ * La función de este programa es manejar y seguir la dieta de frutas y verduras de 
+ * diferentes usuarios, otorgando herramientas como el cálculo de IMC, cálculo
+ * de información nutricinal de vegetales ingeridos, creación de documentos y
+ * futuras opciones que se planean implementar, como por ejemplo: mostrar
+ * información adicional y curiosa de cada vegetal, como plantar dicho vegetal, alertas
+ * de exceso o falta de algún nutriente.
+ * 
+ * @author
+ * @version
  */
 public class Principal {
     
     public static int MAX_VERDURAS = 3;
     public static int MAX_FRUTAS = 3;
     
+    /**
+     * Imprime un menú de opciones para el menú princial, que el usuario debise 
+     * digitar la opción por consola.
+     */
     public static void textoMenuPrincipal() {
         System.out.println("Seleccione una opción");
         System.out.println("1...Crear un usuario");
@@ -23,6 +35,10 @@ public class Principal {
         System.out.println();
     }
     
+    /**
+     * Imprime un menú de opciones para el menú de un usuario, que este debiese
+     * digitar la opción por consola.
+     */
     public static void textoMenuUsuario() {
         System.out.println("Seleccione una opción");
         System.out.println("1...Ver IMC");
@@ -35,13 +51,25 @@ public class Principal {
         System.out.println();
     }
     
+    /**
+     * Maneja el menú de usuario, aquí se puede acceder a opciones de usuario: calcular
+     * IMC, añadir un vegetal consumido, mostrar los vegetales consumidos, 
+     * calcular el total de calorías consumidas, modificar los datos del usuario y
+     * eliminar un vegetal consumido. Primero se verifica que ListaUsuarios no esté 
+     * vacía, para luego verificar que el usuario con el nombre ingresado por teclado
+     * existe en la lista.
+     * 
+     * @param UsuariosRegistrados objeto de tipo Registro que guarda la lista de
+     *                            objetos Usuarios registrados
+     * @param DatosVegetales objeto de tipo Datos que guarda en dos listas los datos
+     *                       de frutas y verduras respectivamente
+     */
     public static void menuUsuario(Registro UsuariosRegistrados, Datos DatosVegetales) {
         Scanner input = new Scanner(System.in);
         String nombreVegetal, tipoVegetal;
         Usuario usuario;
         int opcionUsuario, opcionModificar;
         
-        //si la ListaUsuarios no está vacía
         if (!UsuariosRegistrados.getIsListaUsuariosEmpty()) {
             System.out.println("¿A que usuario deseas acceder?");
             UsuariosRegistrados.imprimirListaUsuarios();
@@ -113,7 +141,8 @@ public class Principal {
                             break;
                         
                         default:
-                            System.out.println("Ingrese opcion valida");
+                            if (opcionUsuario != 0)
+                                System.out.println("Ingrese opcion valida");
                     }
                 }while(opcionUsuario!=0);
             }
@@ -124,9 +153,19 @@ public class Principal {
             System.out.println("Aún no hay usuarios");
     }
     
+    /**
+     * Maneja el menú principal del programa, con opciones: crear usuario, ver 
+     * usuarios registrados, ver datos de un usuario, eliminar un usuario y crear
+     * un archivo .txt con los datos de los usuarios registrados.
+     * 
+     * @param UsuariosRegistrados objeto de tipo Registro que guarda la lista de
+     *                            objetos Usuarios registrados
+     * @param DatosVegetales objeto de tipo Datos que guarda en dos listas los datos
+     *                       de frutas y verduras respectivamente
+     */
     public static void menuPrincipal(Registro UsuariosRegistrados, Datos DatosVegetales) {
         Scanner input = new Scanner(System.in);
-        String nombre, nombreEliminar;
+        String nombreEliminar;
         int opcion;
         
         do{
@@ -140,9 +179,7 @@ public class Principal {
                 
                 //crear usuario
                 case 1:
-                    System.out.println("Ingresa tu nombre");
-                    nombre = input.next();
-                    if (UsuariosRegistrados.crearUsuario(nombre))
+                    if (UsuariosRegistrados.crearUsuario())
                         System.out.println("Usuario creado con éxito!");
                     else
                         System.out.println("El usuario ya se encuentra registrado");
@@ -173,6 +210,7 @@ public class Principal {
                         System.out.println("No hay usuarios que eliminar");
                     break;
                 
+                //crear un archivo que contiene datos de los usuarios
                 case 5:
                     if (UsuariosRegistrados.crearArchivoUsuarios())
                         System.out.println("Archivo generado con exito");
@@ -180,12 +218,21 @@ public class Principal {
                         System.out.println("Error al generar archivo");
                     break;
                     
-                default: 
-                    System.out.println("Ingrese opcion valida");
+                default:
+                    if (opcion != 0)
+                        System.out.println("Ingrese opcion valida");
             }
         }while(opcion!=0);
     }
     
+    /**
+     * Método principal del programa, aquí se crear los objetos UsuariosRegistrados
+     * y DatosVegetales, en los cuales se encargan de almacenar, manejar y crear 
+     * los datos necesarios para el funcionamiento del programa.
+     * 
+     * @param args
+     * @throws FileNotFoundException 
+     */
     public static void main(String[] args) throws FileNotFoundException {
         Registro UsuariosRegistrados = new Registro();
         Datos DatosVegetales = new Datos();

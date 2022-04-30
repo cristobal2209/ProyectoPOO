@@ -12,13 +12,22 @@ import static proyecto.proyectopoo.Principal.MAX_FRUTAS;
 import static proyecto.proyectopoo.Principal.MAX_VERDURAS;
 
 /**
- *
- * @author crist
+ * Esta clase se encarga de almacenar y controlar los datos de frutas y verduras,
+ * guardando sus datos en dos listas de objetos: ListaFrutas para los objetos Fruta
+ * y ListaVerduras para los objetos Verdura.
+ * 
+ * @author
+ * @author
+ * @author
+ * @version
  */
 public class Datos {
+    
     private ArrayList<Fruta> ListaFrutas = new ArrayList<Fruta>();
     private ArrayList<Verdura> ListaVerduras = new ArrayList<Verdura>();
 
+    //getters
+    
     public ArrayList<Fruta> getListaFrutas() {
         return ListaFrutas;
     }
@@ -27,6 +36,8 @@ public class Datos {
         return ListaVerduras;
     }
 
+    //setters
+    
     public void setListaFrutas(ArrayList<Fruta> ListaFrutas) {
         this.ListaFrutas = ListaFrutas;
     }
@@ -35,6 +46,16 @@ public class Datos {
         this.ListaVerduras = ListaVerduras;
     }
     
+    //métodos
+    /**
+     * Lee los datos de verduras y frutas guardados en un archivo .txt con ruta
+     * src/test/java/(archivo).txt, para luego añadirlos a una lista. Para leer
+     * se emplea un ciclo for que dura según la cantidad definida por MAX_VERDURAS
+     * y MAX_FRUTAS, estos valores se pueden cambiar en la clase Principal. En 
+     * cada ciclo for se leen todos los datos de una fruta o verdura, para luego
+     * crear y añadir un nuevo objeto Fruta o Verdura a su respectiva lista 
+     * (ListaFrutas o ListaVerduras).
+     */
     public void leerDesdeArchivo() {
         String nombre, tipo;
         boolean esCultivoPequeno, tieneSemilla;
@@ -78,6 +99,19 @@ public class Datos {
         }
     }
     
+    /**
+     * Retorna el tipo (fruta o verdura) de un vegetal a través de su nombre.
+     * Para esto se ingresa por parámetro el nombre de un vegetal y se recorren
+     * las dos listas (ListaFrutas o ListaVerduras). Si encuentra igualdad de nombre
+     * del vegetal ingresado con el atributo nombre de algún objeto en las listas, se retorna
+     * un String con el tipo que corresponda, "fruta" o "verdura". En cualquier 
+     * otro caso retorna null.
+     * 
+     * @param nombreVegetal String que guarda el nombre de un vegetal que se desea
+     *                      saber su tipo
+     * @return String "fruta" si el vegetal está en ListaFrutas, String "verdura"
+     *         si el vegetal está en ListaVerduras o null en cualquier otro caso
+     */
     public String getTipoVegetal(String nombreVegetal) {
         String fruta = "fruta";
         String verdura = "verdura";
@@ -92,6 +126,16 @@ public class Datos {
         return null;
     }
     
+    /**
+     * Verifica si un vegetal existe en las listas ListaFrutas o ListaVerduras.
+     * Se recorren ambas listas por separado y si el atributo nombre de algún
+     * objeto es igual al nombre ingresado por parámetro, retorna 'true' diciendo
+     * que existe tal vegetal. En cualquier otro caso retorna 'false'.
+     * 
+     * @param nombreVegetal String que guarda el nombre de vegetal a verificar
+     *                      su existencia en las listas
+     * @return 'true' si el vegetal ingresado existe, 'false' en cualquier otro caso
+     */
     public boolean vegetalExiste(String nombreVegetal) {
         for (int i = 0; i < ListaFrutas.size(); i++) {
             if (ListaFrutas.get(i).getNombre().equalsIgnoreCase(nombreVegetal))
@@ -104,53 +148,22 @@ public class Datos {
         return false;
     }
     
-    public void mostrarDatosFrutas() {
-        for (int i = 0; i < ListaFrutas.size(); i++) {
-            System.out.println("FRUTA "+(i+1));
-            System.out.println("Nombre "+ListaFrutas.get(i).getNombre());
-            System.out.println("Tipo "+ListaFrutas.get(i).getTipo());
-            System.out.print("¿Tiene semilla? ");
-            if (ListaFrutas.get(i).isTieneSemilla()) System.out.println("SI");
-            else System.out.println("NO");
-            System.out.println("Una porción de "+ListaFrutas.get(i).getPorcion()+" gramos tiene:");
-            System.out.println(ListaFrutas.get(i).getCalorias()+" calorias");
-            System.out.println(ListaFrutas.get(i).getGrasas()+" grasas");
-            System.out.println(ListaFrutas.get(i).getProteinas()+" proteinas");
-            System.out.println(ListaFrutas.get(i).getCarbohidratos()+" carbohidratos");
-            System.out.println();
-        }
-    }
-    
+    /**
+     * Imprime el contenido de ListaFrutas en formato "- nombreFruta/n". Este método 
+     * se ocupa para mostrar sólo el nombre de las frutas guardadas como dato, así 
+     * el usuario ingresa por consola el nombre de la fruta que ha consumido.
+     */
     public void mostrarListaFrutas() {
         for (int i = 0; i < ListaFrutas.size(); i++) {
             System.out.println("- "+ListaFrutas.get(i).getNombre());
         }
     }
     
-    public void mostrarDatosVerduras() {
-        for (int i = 0; i < ListaVerduras.size(); i++) {
-            System.out.println("VERDURA "+(i+1));
-            System.out.println("Nombre "+ListaVerduras.get(i).getNombre());
-            System.out.println("Tipo "+ListaVerduras.get(i).getTipo());
-            System.out.print("¿Tiene semilla? ");
-            if (ListaVerduras.get(i).isTieneSemilla()) 
-                System.out.println("SI"); 
-            else 
-                System.out.println("NO");
-            System.out.print("¿Es un cultivo pequeño? ");
-            if (ListaVerduras.get(i).isCultivoPequeno()) 
-                System.out.println("SI"); 
-            else 
-                System.out.println("NO");
-            System.out.println("Una porción de "+ListaVerduras.get(i).getPorcion()+" gramos tiene:");
-            System.out.println(ListaVerduras.get(i).getCalorias()+" calorias");
-            System.out.println(ListaVerduras.get(i).getGrasas()+" grasas");
-            System.out.println(ListaVerduras.get(i).getProteinas()+" proteinas");
-            System.out.println(ListaVerduras.get(i).getCarbohidratos()+" carbohidratos");
-            System.out.println();
-        }
-    }
-    
+    /**
+     * Imprime el contenido de ListaVerduras en formato "- nombreVerdura/n". Este método 
+     * se ocupa para mostrar sólo el nombre de las Verduras guardadas como dato, 
+     * así el usuario ingresa por consola el nombre de la verdura que ha consumido.
+     */
     public void mostrarListaVerduras() {
         for (int i = 0; i < ListaVerduras.size(); i++) {
             System.out.println("- "+ListaVerduras.get(i).getNombre());
