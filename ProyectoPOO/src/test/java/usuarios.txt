@@ -1,0 +1,4 @@
+Usuario 1: cc
+Vegetales consumidos de cc: manzana pina 
+Usuario 2: jhj
+Vegetales consumidos de jhj: 

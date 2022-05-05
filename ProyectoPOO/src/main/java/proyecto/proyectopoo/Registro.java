@@ -13,17 +13,16 @@ import java.util.Scanner;
  * funciones de crear, buscar, eliminar, modificar e imprimir los usuarios. Además posee
  * opciones administrativas de generar un archivo .txt de los usuarios.
  * 
- * @author 
- * @author
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Registro {
     
     private ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
 
     //getters
-    
     public ArrayList<Usuario> getListaUsuarios() {
         return ListaUsuarios;
     } 

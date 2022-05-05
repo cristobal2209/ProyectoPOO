@@ -3,14 +3,19 @@ package proyecto.proyectopoo;
 import java.util.ArrayList;
 
 /**
+ * IMPORTANTE: no se incluyó la opción de modificar vegetal consumido ya que 
+ * no tendría sentido modificar algo de un vegetal consumido, porque sus
+ * atributos (nombre o tipo) son predeterminados. En caso de querer cambiar un
+ * vegetal consumido es mejor eliminar el vegetal añadido y nuevamente añadir otro.
+ * 
  * Esta clase define los atributos y constructores de un objeto Usuario.
  * Posee una lista de objetos Vegetal ListaVegetalesConsumidos que guarda los 
  * vegetales consumidos de un usuario.
  * 
- * @author 
- * @author
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Usuario {
     
@@ -169,5 +174,6 @@ public class Usuario {
             else
                 System.out.print(", "+ListaVegetalesConsumidos.get(i).getNombre());
         }
+        System.out.println("");
     }
 }

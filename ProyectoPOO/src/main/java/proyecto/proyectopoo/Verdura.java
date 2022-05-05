@@ -3,10 +3,10 @@ package proyecto.proyectopoo;
 /**
  * Esta clase proporciona los atributos y constructores que posee un objeto Verdura.
  * 
- * @author
- * @author 
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Verdura {
     

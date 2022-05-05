@@ -16,10 +16,10 @@ import static proyecto.proyectopoo.Principal.MAX_VERDURAS;
  * guardando sus datos en dos listas de objetos: ListaFrutas para los objetos Fruta
  * y ListaVerduras para los objetos Verdura.
  * 
- * @author
- * @author
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Datos {
     
@@ -48,6 +48,10 @@ public class Datos {
     
     //métodos
     /**
+     * IMPORTANTE: Si aparece el mensaje "Ha ocurrido un error de lectura del archivo"
+     * es posible que sea un error de lectura desde el archivo. Para esto se pide
+     * que cambie la ruta en la linea 69 a "src/test/java/datos.txt"
+     * 
      * Lee los datos de verduras y frutas guardados en un archivo .txt con ruta
      * src/test/java/(archivo).txt, para luego añadirlos a una lista. Para leer
      * se emplea un ciclo for que dura según la cantidad definida por MAX_VERDURAS
@@ -100,7 +104,7 @@ public class Datos {
     }
     
     /**
-     * Retorna el tipo (fruta o verdura) de un vegetal a través de su nombre.
+     * Obtiene el tipo (fruta o verdura) de un vegetal a través de su nombre.
      * Para esto se ingresa por parámetro el nombre de un vegetal y se recorren
      * las dos listas (ListaFrutas o ListaVerduras). Si encuentra igualdad de nombre
      * del vegetal ingresado con el atributo nombre de algún objeto en las listas, se retorna

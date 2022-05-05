@@ -3,10 +3,10 @@ package proyecto.proyectopoo;
 /**
  * Esta clase define los atributos y constructores que tiene un objeto Fruta
  * 
- * @author 
- * @author
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Fruta {
     

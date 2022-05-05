@@ -7,13 +7,15 @@ import java.util.Scanner;
 /**
  * La función de este programa es manejar y seguir la dieta de frutas y verduras de 
  * diferentes usuarios, otorgando herramientas como el cálculo de IMC, cálculo
- * de información nutricinal de vegetales ingeridos, creación de documentos y
+ * de información nutrucional de vegetales ingeridos, creación de documentos y
  * futuras opciones que se planean implementar, como por ejemplo: mostrar
- * información adicional y curiosa de cada vegetal, como plantar dicho vegetal, alertas
+ * información adicional y curiosa de cada vegetal, como plantar dicho vegetal y alertas
  * de exceso o falta de algún nutriente.
  * 
- * @author
- * @version
+ * @author Cristóbal Cáceres
+ * @author Pablo Araya
+ * @author René Araya
+ * @version 1.0
  */
 public class Principal {
     
@@ -226,9 +228,9 @@ public class Principal {
     }
     
     /**
-     * Método principal del programa, aquí se crear los objetos UsuariosRegistrados
+     * Método principal del programa, aquí se crean los objetos UsuariosRegistrados
      * y DatosVegetales, en los cuales se encargan de almacenar, manejar y crear 
-     * los datos necesarios para el funcionamiento del programa.
+     * los usuarios y vegetales, respectivamente.
      * 
      * @param args
      * @throws FileNotFoundException 
