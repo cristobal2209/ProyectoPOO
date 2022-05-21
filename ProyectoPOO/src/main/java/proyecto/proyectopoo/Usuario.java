@@ -21,7 +21,7 @@ public class Usuario {
     
     private String nombre, sexo;
     private double masa, altura, imc=0;
-    private ArrayList<Vegetal> ListaVegetalesConsumidos = new ArrayList<Vegetal>();
+    private ArrayList<Vegetal2> ListaVegetalesConsumidos = new ArrayList<Vegetal2>();
     
     //constructores
     /**
@@ -37,6 +37,9 @@ public class Usuario {
         this.masa = masa;
         this.altura = altura;
         this.sexo = sexo;
+    }
+
+    public Usuario() {
     }
 
     //getters
@@ -61,7 +64,7 @@ public class Usuario {
         return sexo;
     }
 
-    public ArrayList<Vegetal> getListaVegetalesConsumidos() {
+    public ArrayList<Vegetal2> getListaVegetalesConsumidos() {
         return ListaVegetalesConsumidos;
     }
     
@@ -87,7 +90,7 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public void setListaVegetalesConsumidos(ArrayList<Vegetal> ListaVegetalesConsumidos) {
+    public void setListaVegetalesConsumidos(ArrayList<Vegetal2> ListaVegetalesConsumidos) {
         this.ListaVegetalesConsumidos = ListaVegetalesConsumidos;
     }
     
@@ -107,7 +110,7 @@ public class Usuario {
      * @param tipoVegetal String que contiene el tipo de vegetal a añadir
      */
     public void agregarVegetalConsumido(String nombreVegetal, String tipoVegetal) {
-        ListaVegetalesConsumidos.add(new Vegetal(nombreVegetal, tipoVegetal));
+        ListaVegetalesConsumidos.add(new Vegetal2(nombreVegetal, tipoVegetal));
     }
     
     /**

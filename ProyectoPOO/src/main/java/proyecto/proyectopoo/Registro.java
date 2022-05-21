@@ -215,4 +215,25 @@ public class Registro {
             return false;
         }
     }
+    
+    /**
+     * Esta función buscar un usuario que ha consumido la menor cantidad de calorías.
+     * 
+     * @param Vegetales Objeto que guarda los datos de las frutas y verduras.
+     * @return Un objeto tipo Usuario que guarda el usuario con la menor cantidad de calorías
+     *         consumidas.
+     */
+    public Usuario getUsuarioMenorCaloriasConsumidas(Datos Vegetales) {
+        Usuario usuarioMenosCalorias = ListaUsuarios.get(0);
+        double menorCalorias = ListaUsuarios.get(0).getCaloriasConsumidas(Vegetales), calorias;
+        
+        for (int i=0 ; i < ListaUsuarios.size(); i++) {
+            calorias = ListaUsuarios.get(i).getCaloriasConsumidas(Vegetales);
+            if (calorias < menorCalorias) {
+                menorCalorias = calorias;
+                usuarioMenosCalorias = ListaUsuarios.get(i);
+            }
+        }
+        return usuarioMenosCalorias;
+    }
 }

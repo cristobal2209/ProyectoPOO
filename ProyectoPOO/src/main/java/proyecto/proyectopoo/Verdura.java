@@ -8,13 +8,9 @@ package proyecto.proyectopoo;
  * @author René Araya
  * @version 1.0
  */
-public class Verdura {
+public class Verdura extends Vegetal {
     
-    //atributos
-    
-    private String nombre, tipo;
-    private boolean cultivoPequeno, tieneSemilla;
-    private double calorias, proteinas, grasas, carbohidratos, porcion;
+    private boolean cultivoPequeno;
     
     //constructores
     /**

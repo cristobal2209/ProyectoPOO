@@ -8,13 +8,8 @@ package proyecto.proyectopoo;
  * @author René Araya
  * @version 1.0
  */
-public class Fruta {
+public class Fruta extends Vegetal{
     
-    //atributos
-    
-    private String nombre, tipo;
-    private boolean tieneSemilla;
-    private double calorias, proteinas, grasas, carbohidratos, porcion;
 
     //constructores
     /**
